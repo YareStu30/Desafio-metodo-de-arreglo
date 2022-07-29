@@ -12,15 +12,14 @@ const tasks = [
   { id: 3, tarea: "Comprar", state: false },
 ];
 
-let checked = function (id) {
+let checked1 = (id) => {
   const index = tasks.findIndex((ele) => ele.id == id);
   if (document.querySelector("#c" + id).checked == true) {
     tasks[index].state = true;
   } else {
-    task[index].state = false;
+    tasks[index].state = false;
   }
   add();
-  console.log(tasks);
 };
 
 let add = function () {
@@ -32,13 +31,13 @@ let add = function () {
       statusCheck = "";
     }
 
-    html += `<li>${chore.tarea} <input type="checkbox" id="opt1" value="first_checkbox" ${statusCheck}> <button> Eliminar </button></li>`;
+    html += `<li>${chore.tarea} <input onclick="checked1(${chore.id})" type="checkbox" id="c${chore.id}" value="first_checkbox" ${statusCheck}> <button onclick="deleteTask(${chore.id})"> Eliminar </button></li>`;
   }
 
   listTask.innerHTML = html;
   countTask.innerHTML = "Cantidad de Tareas: " + tasks.length;
   done.innerHTML =
-    "Realizadas :" + tasks.filter(({ state }) => state === true).length;
+    "Realizadas: " + tasks.filter(({ state }) => state === true).length;
   console.log(tasks);
 };
 
@@ -54,11 +53,10 @@ let deleteTask = (id) => {
   tasks.splice(index, 1);
   let html = "";
   for (chore of tasks) {
-    html += `<li>${chore.tarea} <input type="checkbox" id="opt1" value="first_checkbox"> <button onclick="deleteTask(${chore.id})"> Eliminar </button></li>`;
+    html += `<li>${chore.tarea} <input onclick="checked1(${chore.id})" type="checkbox" id="opt1" value="first_checkbox"> <button onclick="deleteTask(${chore.id})"> Eliminar </button></li>`;
   }
 
   listTask.innerHTML = html;
   countTask.innerHTML = "Cantidad de Tareas: " + tasks.length;
-  done.innerHTML = "Realizadas: " + tasks.length;
 };
 add();
