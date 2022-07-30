@@ -10,18 +10,9 @@ const tasks = [
   { id: 1, tarea: "Estudiar", state: false },
   { id: 2, tarea: "Cocinar", state: false },
   { id: 3, tarea: "Comprar", state: false },
+  { id: 4, tarea: "Bailar", state: false },
+  { id: 5, tarea: "Limpiar arenero", state: false },
 ];
-
-let checked1 = (id) => {
-  const index = tasks.findIndex((ele) => ele.id == id);
-  if (document.querySelector("#c" + id).checked == true) {
-    tasks[index].state = true;
-  } else {
-    tasks[index].state = false;
-  }
-  add();
-};
-
 let add = function () {
   let html = "";
   for (chore of tasks) {
@@ -40,12 +31,26 @@ let add = function () {
     "Realizadas: " + tasks.filter(({ state }) => state === true).length;
   console.log(tasks);
 };
+let checked1 = (id) => {
+  const index = tasks.findIndex((ele) => ele.id == id);
+  if (document.querySelector("#c" + id).checked == true) {
+    tasks[index].state = true;
+  } else {
+    tasks[index].state = false;
+  }
+  add();
+};
 
 button.addEventListener("click", () => {
   const newTask = inputTask.value;
-  tasks.push({ id: Date.now(), tarea: newTask, state: false });
-  inputTask.value = "";
-  add();
+  if (newTask == "") {
+    alert("No ingresaste tareas");
+  } else {
+    tasks.push({ id: Date.now(), tarea: newTask, state: false });
+    inputTask.value = "";
+
+    add();
+  }
 });
 
 let deleteTask = (id) => {
@@ -55,7 +60,7 @@ let deleteTask = (id) => {
   for (chore of tasks) {
     html += `<li>${chore.tarea} <input onclick="checked1(${chore.id})" type="checkbox" id="opt1" value="first_checkbox"> <button onclick="deleteTask(${chore.id})"> Eliminar </button></li>`;
   }
-
+  add();
   listTask.innerHTML = html;
   countTask.innerHTML = "Cantidad de Tareas: " + tasks.length;
 };
