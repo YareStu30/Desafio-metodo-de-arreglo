@@ -4,22 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/js/index.js" />
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Desafio Todo list</title>
   </head>
   <body>
     <h1>Todo List</h1>
-    <hr />
+
     <h3>Nueva tarea</h3>
+    <div class="container">
+      <span id="countTask"></span>
+      <br />
+      <span id="done"></span>
+      <br />
+      <input id="inputTask" type="text" />
+      <button class="button" id="button"><h4>Agregar tareas</h4></button>
 
-    <span id="countTask"></span>
-    <br />
-    <span id="done"></span>
-    <br />
-    <input id="inputTask" type="text" />
-    <button id="button">Agregar tareas</button>
-
-    <ul id="listTask"></ul>
+      <ul id="listTask"></ul>
+    </div>
 
     <script src="assets/js/index.js"></script>
   </body>
